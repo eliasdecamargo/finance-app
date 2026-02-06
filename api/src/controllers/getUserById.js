@@ -19,9 +19,9 @@ export class GetUserByIdController {
                 httpRequest.params.userId,
             )
 
-            if(!user) {
+            if (!user) {
                 return notFound({
-                    message: 'User not found.'
+                    message: 'User not found.',
                 })
             }
 
