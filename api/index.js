@@ -3,9 +3,11 @@ import express from 'express'
 const app = express()
 app.use(express.json())
 
-import { CreateUserController } from './src/controllers/create-user.js'
-import { GetUserByIdController } from './src/controllers/getUserById.js'
-import { UpdateUserContoller } from './src/controllers/updateUser.js'
+import {
+    CreateUserController,
+    GetUserByIdController,
+    UpdateUserContoller,
+} from './src/controllers/index.js'
 
 app.post('/api/users', async (request, response) => {
     const createUserController = new CreateUserController()
