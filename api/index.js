@@ -54,9 +54,14 @@ app.post('/api/users', async (request, response) => {
 })
 
 app.patch('/api/users/:userId', async (request, response) => {
+    const getUserByEmailRepository = new PostgresGetUserByEmailRepository()
+
     const updateUserRepository = new PostgresUpdateUserRepository()
 
-    const updateUserUseCase = new UpdateUserUseCase(updateUserRepository)
+    const updateUserUseCase = new UpdateUserUseCase(
+        updateUserRepository,
+        getUserByEmailRepository,
+    )
 
     const updateUserController = new UpdateUserContoller(updateUserUseCase)
 
