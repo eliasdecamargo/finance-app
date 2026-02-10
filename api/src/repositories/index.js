@@ -3,3 +3,5 @@ export * from './postgres/user/getUserByEmail.js'
 export * from './postgres/user/getUserById.js'
 export * from './postgres/user/updateUser.js'
 export * from './postgres/user/deleteUsers.js'
+
+export * from './postgres/transaction/createTransaction.js'
