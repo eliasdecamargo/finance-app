@@ -8,7 +8,7 @@ export class CreateTransactionUseCase {
     }
 
     async execute(createTransactionParams) {
-        const userId = createTransactionParams.userId
+        const userId = createTransactionParams.user_id
 
         const user = await this.PostgresGetUserByIdRepository.execute(userId)
 
@@ -19,7 +19,7 @@ export class CreateTransactionUseCase {
         const transactionId = uuidv4()
 
         const transaction = await this.createTransactionRepository.execute({
-            createTransactionParams,
+            ...createTransactionParams,
             id: transactionId,
         })
 
