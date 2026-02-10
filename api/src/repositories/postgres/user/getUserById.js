@@ -1,10 +1,10 @@
-import { PostgresHelper } from "../../database/postgres/helper.js";
+import { PostgresHelper } from '../../../database/postgres/helper.js'
 
 export class PostgresGetUserByIdRespository {
     async execute(userId) {
         const user = await PostgresHelper.query(
             'SELECT * FROM users WHERE id = $1',
-            [userId]
+            [userId],
         )
 
         return user[0]
