@@ -3,4 +3,10 @@ export * from './user/getUserById.js'
 export * from './user/updateUser.js'
 export * from './user/deleteUser.js'
 
+export * from './helpers/http.js'
+export * from './helpers/transaction.js'
+export * from './helpers/user.js'
+export * from './helpers/validation.js'
+
 export * from './transaction/createTransaction.js'
+export * from './transaction/getTransactionsByUserId.js'

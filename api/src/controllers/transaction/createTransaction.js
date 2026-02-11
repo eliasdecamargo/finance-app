@@ -18,7 +18,7 @@ export class CreateTransactionController {
 
     async execute(httpRequest) {
         try {
-            const params = httpRequest.body
+            const params = httpRequest?.body ?? {}
 
             const requiredFields = ['user_id', 'name', 'date', 'amount', 'type']
 

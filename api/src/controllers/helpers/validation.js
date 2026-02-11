@@ -10,7 +10,7 @@ export const invalidIdResponse = () => {
 }
 
 export const requiredFieldIsmissingResponse = (field) => {
-    badRequest({
+    return badRequest({
         message: `The field ${field} is required.`,
     })
 }
@@ -18,11 +18,13 @@ export const requiredFieldIsmissingResponse = (field) => {
 export const checkIfIsString = (value) => typeof value === 'string'
 
 export const validateRequiredFields = (params, requiredFields) => {
+    const safeParams = params ?? {}
+
     for (const field of requiredFields) {
-        const fieldIsMissing = !params[field]
+        const fieldIsMissing = !safeParams[field]
         const fieldIsEmpty =
-            checkIfIsString(params[field]) &&
-            validator.isEmpty(params[field], { ignore_whitespace: true })
+            checkIfIsString(safeParams[field]) &&
+            validator.isEmpty(safeParams[field], { ignore_whitespace: true })
 
         if (fieldIsMissing || fieldIsEmpty) {
             return {
