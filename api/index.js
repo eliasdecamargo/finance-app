@@ -13,6 +13,7 @@ import {
     makeCreateTransactionController,
     makeGetTransactionsByUserIdController,
     makeUpdateTransactionController,
+    makeDeleteTransactionController,
 } from './src/factories/controllers/transaction.js'
 
 app.get('/api/users/:userId', async (request, response) => {
@@ -73,6 +74,15 @@ app.get('/api/transactions', async (request, response) => {
         await getTransactionsByUserIdController.execute(request)
 
     response.status(statusCode).send(body)
+})
+
+app.delete('/api/transactions/:transactionId', async (request, response) => {
+    const deleteTransactionController = makeDeleteTransactionController()
+
+    const { statusCode, body } =
+        await deleteTransactionController.execute(request)
+
+    return response.status(statusCode).send(body)
 })
 
 app.listen(process.env.PORT, () =>

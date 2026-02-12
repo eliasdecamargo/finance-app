@@ -3,9 +3,9 @@ import {
     invalidIdResponse,
     ok,
     serverError,
-} from '../helpers'
+} from '../helpers/index.js'
 
-export class DelteTransactionController {
+export class DeleteTransactionController {
     constructor(deleteTransactionUseCase) {
         this.deleteTransactionUseCase = deleteTransactionUseCase
     }
