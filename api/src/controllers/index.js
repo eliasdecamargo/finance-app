@@ -10,3 +10,5 @@ export * from './helpers/validation.js'
 
 export * from './transaction/createTransaction.js'
 export * from './transaction/getTransactionsByUserId.js'
+
+export * from './transaction/updateTransactionController.js'

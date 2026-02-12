@@ -11,12 +11,6 @@ export const pool = new Pool({
     host: process.env.POSTGRES_HOST,
 })
 
-console.log('Dados do ENV:', {
-    user: process.env.POSTGRES_USER,
-    pass: process.env.POSTGRES_PASSWORD,
-    db: process.env.POSTGRES_DB,
-})
-
 export const PostgresHelper = {
     query: async (query, params) => {
         const client = await pool.connect()
