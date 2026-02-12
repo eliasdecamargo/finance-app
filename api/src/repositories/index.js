@@ -6,5 +6,5 @@ export * from './postgres/user/deleteUsers.js'
 
 export * from './postgres/transaction/createTransaction.js'
 export * from './postgres/transaction/getTransactionsByUserId.js'
-
 export * from './postgres/transaction/updateTransaction.js'
+export * from './postgres/transaction/deleteTransaction.js'
