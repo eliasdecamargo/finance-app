@@ -2,6 +2,7 @@ export * from './user/create-user.js'
 export * from './user/getUserById.js'
 export * from './user/updateUser.js'
 export * from './user/deleteUser.js'
+export * from './user/getUserBalance.js'
 
 export * from './helpers/http.js'
 export * from './helpers/transaction.js'
