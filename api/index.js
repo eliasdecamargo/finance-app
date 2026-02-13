@@ -6,9 +6,11 @@ app.use(express.json())
 import {
     makeCreateUserController,
     makeDeleteUserController,
+    makeGetUserBalanceController,
     makeGetUserByIdController,
     makeUpdateUserController,
 } from './src/factories/controllers/user.js'
+
 import {
     makeCreateTransactionController,
     makeGetTransactionsByUserIdController,
@@ -28,6 +30,14 @@ app.post('/api/users', async (request, response) => {
     const createUserController = await makeCreateUserController()
 
     const { statusCode, body } = await createUserController.execute(request)
+
+    response.status(statusCode).send(body)
+})
+
+app.get('/api/users/:userId/balance', async (request, response) => {
+    const getUserBalanceController = makeGetUserBalanceController()
+
+    const { statusCode, body } = await getUserBalanceController.execute(request)
 
     response.status(statusCode).send(body)
 })
