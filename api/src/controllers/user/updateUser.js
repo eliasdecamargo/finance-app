@@ -1,11 +1,9 @@
+import { ZodError } from 'zod'
 import { EmailAlreadyInUseError } from '../../errors/user.js'
+import { updateUserSchema } from '../../schemas/user.js'
 import {
-    checkIfEmailIsValid,
     checkIfIdIsValid,
-    checkIfPasswordIsValid,
-    emailIsAlreadyInUseResponse,
     invalidIdResponse,
-    invalidPasswordResponse,
     badRequest,
     ok,
     serverError,
@@ -28,38 +26,7 @@ export class UpdateUserContoller {
                 return invalidIdResponse()
             }
 
-            const allowedFields = [
-                'first_name',
-                'last_name',
-                'email',
-                'password',
-            ]
-
-            const someFieldsIsNotAllowed = Object.keys(params).some(
-                (field) => !allowedFields.includes(field),
-            )
-
-            if (someFieldsIsNotAllowed) {
-                return badRequest({
-                    message: 'Some provided field is not allowed.',
-                })
-            }
-
-            if (params.password) {
-                const passwordIsValid = checkIfPasswordIsValid(params.password)
-
-                if (!passwordIsValid) {
-                    return invalidPasswordResponse()
-                }
-            }
-
-            if (params.email) {
-                const emailIsValid = checkIfEmailIsValid(params.email)
-
-                if (!emailIsValid) {
-                    return emailIsAlreadyInUseResponse()
-                }
-            }
+            await updateUserSchema.parseAsync(params)
 
             const updateUser = await this.updateUserUseCase.execute(
                 userId,
@@ -68,6 +35,12 @@ export class UpdateUserContoller {
 
             return ok(updateUser)
         } catch (error) {
+            if (error instanceof ZodError) {
+                return badRequest({
+                    message: JSON.parse(error.message)[0].message,
+                })
+            }
+
             if (error instanceof EmailAlreadyInUseError) {
                 return badRequest({ message: error.message })
             }
