@@ -7,14 +7,17 @@
         "migrations": "node src/database/postgres/migrations/exec.js",
         "postinstall": "npx husky install",
         "start:dev": "nodemon index.js",
-        "test": "jest"
+        "test": "jest --passWithNoTests"
     },
     "keywords": [],
     "author": "",
     "license": "ISC",
     "type": "module",
     "devDependencies": {
+        "@babel/core": "^7.29.0",
+        "@babel/preset-env": "^7.29.0",
         "@types/node": "^25.2.3",
+        "babel-jest": "^30.2.0",
         "dotenv": "^17.3.1",
         "eslint": "^8.46.0",
         "git-commit-msg-linter": "^5.0.8",
