@@ -7,7 +7,7 @@
         "migrations": "node src/database/postgres/migrations/exec.js",
         "postinstall": "npx husky install",
         "start:dev": "nodemon index.js",
-        "test": "jest --passWithNoTests"
+        "test": "jest --passWithNoTests --silent"
     },
     "keywords": [],
     "author": "",
